@@ -274,6 +274,8 @@ pub struct Packets<'a> {
     iter: vpx_codec_iter_t,
 }
 
+unsafe impl<'a> Send for Packets<'a> {}
+
 impl<'a> Iterator for Packets<'a> {
     type Item = Frame<'a>;
     fn next(&mut self) -> Option<Self::Item> {
@@ -301,6 +303,8 @@ pub struct Finish {
     enc: Encoder,
     iter: vpx_codec_iter_t,
 }
+
+unsafe impl Send for Finish {}
 
 impl Finish {
     pub fn next(&mut self) -> Result<Option<Frame>> {

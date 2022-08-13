@@ -67,6 +67,8 @@ pub struct Encoder {
     height: usize,
 }
 
+unsafe impl Send for Encoder {}
+
 #[derive(Debug, Error)]
 #[error("VPX encode error: {msg}")]
 pub struct Error {
